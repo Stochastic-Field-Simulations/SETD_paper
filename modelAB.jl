@@ -200,7 +200,7 @@ end
 
 function local_run3()
     num = 3
-    n   = 24 #48
+    n   = 48
     
     numbers = (n=n)
 
@@ -228,5 +228,5 @@ end
 
 # local_run1()
 # local_run2()
-local_run3() # This takes 40 min if run in parallel with 12 core on a laptop
+local_run3() # This takes some time...
 # local_run4()
