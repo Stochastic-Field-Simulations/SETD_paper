@@ -99,7 +99,7 @@ function run3(n, seed, folder)
     T       = 1e-2
     N       = 2^8
     L       = N
-    TIME    = 1e4 #4e6
+    TIME    = 4e6
     Δt      = 4e-1
 
     N_save  = 1_000
@@ -228,5 +228,5 @@ end
 
 # local_run1()
 # local_run2()
-local_run3()
+local_run3() # This takes 40 min if run in parallel with 12 core on a laptop
 # local_run4()
