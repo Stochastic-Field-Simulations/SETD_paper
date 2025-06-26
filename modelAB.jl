@@ -42,7 +42,8 @@ function run1(n, seed, folder)
     save_opt = (
         save_names=save_names, folder=folder, 
         N_step=N_step, N_save=N_save, t_start=now(),
-        SAVEFIELD=true, SAVECORR=false, N_write=false
+        SAVEFIELD=true, SAVECORR=true, N_write=false,
+        SAVEDATA=(:tools,)
     )
 
     save_first(tools, con, fields, save_opt)
@@ -83,7 +84,8 @@ function run2(n, seed, folder)
     save_opt = (
         save_names=save_names, folder=folder, 
         N_step=N_step, N_save=N_save, t_start=now(),
-        SAVEFIELD=true, SAVECORR=false, N_write=false
+        SAVEFIELD=true, SAVECORR=true, N_write=false,
+        SAVEDATA=(:tools,)
     )
 
     save_first(tools, con, fields, save_opt)
@@ -123,7 +125,8 @@ function run3(n, seed, folder)
     save_opt = (
         save_names=save_names, folder=folder, 
         N_step=N_step, N_save=N_save, t_start=now(),
-        SAVEFIELD=true, SAVECORR=false, N_write=false
+        SAVEFIELD=true, SAVECORR=false, N_write=false,
+        SAVEDATA=(:tools,)
     )
 
     save_first(tools, con, fields, save_opt)
@@ -140,7 +143,8 @@ function local_run1()
     numbers = (n=n)
 
     @threads for seed in 1:n
-        folder  = "data/SETD1/$num/$seed/"
+        # folder  = "data/SETD1/$num/$seed/"
+        folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run1(n, seed, folder)
     end
@@ -153,7 +157,8 @@ function local_run2()
     numbers = (n=n)
 
     @threads for seed in 1:n
-        folder  = "data/SETD1/$num/$seed/"
+        # folder  = "data/SETD1/$num/$seed/"
+        folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run2(n, seed, folder)
     end
@@ -161,19 +166,21 @@ end
 
 
 function local_run3()
-    num = 4 # Obs
+    # num = 4 # Obs
+    num = 3 # Obs
     n   = 2^10
     
     numbers = (n=n)
 
     @threads for seed in 1:n
-        folder  = "data/SETD1/$num/$seed/"
+        # folder  = "data/SETD1/$num/$seed/"
+        folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run3(n, seed, folder)
     end
 end
 
 
-# local_run1()
-# local_run2()
-# local_run3()
+local_run1()
+local_run2()
+local_run3()
