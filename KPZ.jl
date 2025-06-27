@@ -42,7 +42,8 @@ function run(n, seed, folder)
     save_opt = (
         save_names=save_names, folder=folder, 
         N_step=N_step, N_save=N_save, t_start=now(),
-        SAVEFIELD=true, SAVECORR=false, N_write=false
+        SAVEFIELD=true, SAVECORR=false, N_write=false,
+        SAVEDATA=(:tools,)
     )
 
     save_first(tools, con, fields, save_opt)
@@ -55,11 +56,11 @@ end
 
 function local_run()
     num = 5
-    n   = 24 # 240
+    n   = 96
     numbers = (n=n)
 
     @threads for seed in 1:n
-        folder  = "data/SETD1/$num/$seed/"
+        folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run(n, seed, folder)
     end

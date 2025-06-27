@@ -166,8 +166,7 @@ end
 
 
 function local_run3()
-    # num = 4 # Obs
-    num = 3 # Obs
+    num = 3
     n   = 2^10
     
     numbers = (n=n)

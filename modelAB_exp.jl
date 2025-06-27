@@ -16,9 +16,9 @@ end
 function run(n, seed, folder)
     d       = 2
     T       = 1e-2
-    N       = 2^8
+    N       = 2^7
     L       = N
-    TIME    = 4e6
+    TIME    = 1e6
     Δt      = 4e-1
 
     N_save  = 1_000
@@ -40,7 +40,8 @@ function run(n, seed, folder)
     save_opt = (
         save_names=save_names, folder=folder, 
         N_step=N_step, N_save=N_save, t_start=now(),
-        SAVEFIELD=true, SAVECORR=false, N_write=1_000
+        SAVEFIELD=false, SAVECORR=true, N_write=1_000,
+        SAVEDATA=(:tools,)
     )
 
     save_first(tools, con, fields, save_opt)
@@ -52,13 +53,15 @@ end
 
 
 function local_run()
-    num = 3
+    num = 4
     n   = 48
+    # n   = 8
     
     numbers = (n=n)
 
     @threads for seed in 1:n
-        folder  = "data/SETD1/$num/$seed/"
+        # folder  = "data/SETD1/$num/$seed/"
+        folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run(n, seed, folder)
     end
