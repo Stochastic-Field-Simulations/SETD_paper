@@ -16,9 +16,9 @@ end
 function run(n, seed, folder)
     d       = 2
     T       = 1e-2
-    N       = 2^7
-    L       = N
-    TIME    = 1e6
+    N       = 2^8
+    L       = N * 2
+    TIME    = 5e6
     Δt      = 4e-1
 
     N_save  = 1_000
@@ -26,7 +26,7 @@ function run(n, seed, folder)
     @assert N_save<=N_step
     @assert N_step%N_save==0
 
-    r = -LinRange(0.024, 0.012, n)[seed]
+    r = -LinRange(0.018, 0.014, n)[seed]
     con     = (r = r, u = 1)
     
     sys     = System(d, N, L, Δt; T=T)
@@ -53,9 +53,9 @@ end
 
 
 function local_run()
-    num = 4
+    num = 6
     n   = 48
-    # n   = 8
+    # n   = 36
     
     numbers = (n=n)
 
