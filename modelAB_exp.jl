@@ -28,6 +28,7 @@ function run(n, seed, folder)
     @assert N_step%N_save==0
 
     r = -LinRange(0.018, 0.013, n)[seed]
+    r = -LinRange(0.018, 0.014, n)[seed]
     con     = (r = r, u = 1)
     
     sys     = System(d, N, L, Δt; T=T)
@@ -55,12 +56,12 @@ end
 
 function local_run()
     num = 6
+    num = 7
     n   = 48
     
     numbers = (n=n)
 
     @threads for seed in 1:n
-        # folder  = "data/SETD1/$num/$seed/"
         folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run(n, seed, folder)
