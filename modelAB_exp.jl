@@ -28,7 +28,7 @@ function run(n, seed, folder)
     @assert N_step%N_save==0
 
     r = -LinRange(0.018, 0.013, n)[seed]
-    r = -LinRange(0.018, 0.014, n)[seed]
+    r = -LinRange(0.0165, 0.013, n)[seed]
     con     = (r = r, u = 1)
     
     sys     = System(d, N, L, Δt; T=T)
