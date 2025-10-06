@@ -18,19 +18,19 @@ function run(n, seed, folder)
     T       = 1e-2
     N       = 2^8
     L       = N * 2
-    TIME    = 1e7
+    TIME    = 2e6
     Δt      = 4e-1
 
-
-    N_save  = 1_000
+    N_save  = 100
     N_step  = Int(TIME/Δt)
     @assert N_save<=N_step
     @assert N_step%N_save==0
 
-    r = -LinRange(0.018, 0.013, n)[seed]
-    r = -LinRange(0.0165, 0.013, n)[seed]
-    con     = (r = r, u = 1)
-    
+    rc = -0.0167
+    lnt = LinRange(-4, log(10, abs(rc)), n)[seed]
+    r = 10^lnt + rc
+
+    con     = (r = r, u = 1)    
     sys     = System(d, N, L, Δt; T=T)
     tools   = Tools(sys; seed=seed, conserved=false, time_step=ETD2)
 
@@ -53,20 +53,14 @@ function run(n, seed, folder)
     end
 end
 
-
 function local_run()
     num = 6
-    num = 7
     n   = 48
     
-    numbers = (n=n)
-
     @threads for seed in 1:n
         folder  = "data/SETD_paper/$num/$seed/"
-        save_info(numbers, folder)
         run(n, seed, folder)
     end
 end
-
 
 local_run() # This takes some time...

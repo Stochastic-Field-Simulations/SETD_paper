@@ -1,1 +1,1 @@
-/usr/ds/bin/julia --project=SFS -t 12 "modelAB_exp.jl"
+/usr/ds/bin/julia --project=SFS -t 15 "modelAB_exp.jl"
