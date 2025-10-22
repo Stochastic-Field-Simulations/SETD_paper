@@ -143,7 +143,6 @@ function local_run1()
     numbers = (n=n)
 
     @threads for seed in 1:n
-        # folder  = "data/SETD1/$num/$seed/"
         folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run1(n, seed, folder)
@@ -157,7 +156,6 @@ function local_run2()
     numbers = (n=n)
 
     @threads for seed in 1:n
-        # folder  = "data/SETD1/$num/$seed/"
         folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run2(n, seed, folder)
@@ -172,7 +170,6 @@ function local_run3()
     numbers = (n=n)
 
     @threads for seed in 1:n
-        # folder  = "data/SETD1/$num/$seed/"
         folder  = "data/SETD_paper/$num/$seed/"
         save_info(numbers, folder)
         run3(n, seed, folder)
