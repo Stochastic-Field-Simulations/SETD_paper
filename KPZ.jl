@@ -12,6 +12,7 @@ function f!(fields, con, tools)
     @. f.k = - im * sqrt(p2) * φ.k
     mul!(f.x, bplan, f.k)
     @. f.x = u * f.x^2 / 2
+    mul!(f.k, fplan, f.x)
     nothing
 end
 

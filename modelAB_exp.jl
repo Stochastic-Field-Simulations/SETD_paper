@@ -9,6 +9,7 @@ function f!(fields, con, tools)
     @unpack r, u = con
     
     @. f.x = - (( r + u * φ.x^2 ) * φ.x)
+    mul!(f.k, fplan, f.x)
     nothing 
 end
 
