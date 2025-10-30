@@ -19,7 +19,7 @@ function run1(n, seed, folder)
     T       = 1e-1
     N       = 2^8
     L       = N/4
-    TIME    = 1e4
+    TIME    = 1e5
     Δt      = 1e-2
 
     N_save  = 1000

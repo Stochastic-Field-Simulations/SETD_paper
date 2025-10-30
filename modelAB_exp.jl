@@ -19,9 +19,9 @@ function run(n, seed, folder)
     d       = 2
     T       = 1e-2
     N       = 2^8
-    L       = N * 2
+    L       = N * 8
     TIME    = 5e6
-    Δt      = 4e-1
+    Δt      = .5
 
     N_save  = 100
     N_step  = Int(TIME/Δt)
@@ -30,6 +30,9 @@ function run(n, seed, folder)
 
     rc = -0.0167
     lnt = LinRange(-4, log(10, abs(rc)), n)[seed]
+
+    rc = -0.0103
+    lnt = LinRange(-4.5, log(10, abs(rc)), n_r)[seed]
     r = 10^lnt + rc
 
     con     = (r = r, u = 1)    
