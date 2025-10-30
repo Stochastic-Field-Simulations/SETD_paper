@@ -7,8 +7,10 @@ include("SFS/src/jl/integrators.jl")
 function f!(fields, con, tools)
     @unpack φ, f = fields
     @unpack r, u = con
+    @unpack fplan = tools
     
     @. f.x = - (( r + u * φ.x^2 ) * φ.x)
+    mul!(f.k, fplan, f.x)
     nothing 
 end
 
