@@ -138,7 +138,7 @@ function run3(n, seed, folder)
     end
 end
 
-function local_run1()
+function run1()
     num = 1
     n   = 6
     
@@ -151,7 +151,7 @@ function local_run1()
     end
 end
 
-function local_run2()
+function run2()
     num = 2
     n   = 6
     
@@ -165,7 +165,7 @@ function local_run2()
 end
 
 
-function local_run3()
+function run3()
     num = 3
     n   = 2^10
     
@@ -179,6 +179,6 @@ function local_run3()
 end
 
 
-local_run1()
-local_run2()
-local_run3()
+run1()
+run2()
+run3()
