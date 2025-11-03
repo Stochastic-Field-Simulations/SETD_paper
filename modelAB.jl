@@ -11,7 +11,6 @@ function f!(fields, con, tools)
     
     @. f.x = - (( r + u * φ.x^2 ) * φ.x)
     mul!(f.k, fplan, f.x)
-    nothing 
 end
 
 function run1(n, seed, folder)
@@ -21,12 +20,8 @@ function run1(n, seed, folder)
     L       = N/4
     TIME    = 1e5
     Δt      = 1e-2
-
-    N_save  = 1000
     N_step  = Int(TIME/Δt)
     equ     = N_step
-    @assert N_save<=N_step
-    @assert N_step%N_save==0
 
     r = 10^LinRange(.5, -3, n)[seed]
     con     = (r = r, u = 0.)
@@ -43,7 +38,7 @@ function run1(n, seed, folder)
 
     save_opt = (
         save_names=save_names, folder=folder, 
-        N_step=N_step, N_save=N_save, t_start=now(),
+        N_step=N_step, N_save=1000, t_start=now(),
         SAVEFIELD=true, SAVECORR=true, N_write=false,
         SAVEDATA=(:tools,)
     )
@@ -63,12 +58,8 @@ function run2(n, seed, folder)
     L       = N/4
     TIME    = 1e6
     Δt      = 1e-2
-
-    N_save  = 1000
     N_step  = Int(TIME/Δt)
     equ     = N_step
-    @assert N_save<=N_step
-    @assert N_step%N_save==0
 
     r = 10^LinRange(.5, -3, n)[seed]
     con     = (r = r, u = 0.)
@@ -85,7 +76,7 @@ function run2(n, seed, folder)
 
     save_opt = (
         save_names=save_names, folder=folder, 
-        N_step=N_step, N_save=N_save, t_start=now(),
+        N_step=N_step, N_save=1000, t_start=now(),
         SAVEFIELD=true, SAVECORR=true, N_write=false,
         SAVEDATA=(:tools,)
     )
@@ -105,12 +96,8 @@ function run3(n, seed, folder)
     L       = N
     TIME    = 2e1
     Δt      = 1e-2
-
-    N_save  = 100
     N_step  = Int(TIME/Δt)
     equ     = N_step
-    @assert N_save<=N_step
-    @assert N_step%N_save==0
 
     con     = (r = 1., u = 1)
     
@@ -126,7 +113,7 @@ function run3(n, seed, folder)
 
     save_opt = (
         save_names=save_names, folder=folder, 
-        N_step=N_step, N_save=N_save, t_start=now(),
+        N_step=N_step, N_save=100, t_start=now(),
         SAVEFIELD=true, SAVECORR=false, N_write=false,
         SAVEDATA=(:tools,)
     )

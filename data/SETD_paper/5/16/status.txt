@@ -1,0 +1,18 @@
+Status simulation:
+
+Simulation started:
+02-11-2025 
+22:05:51
+
+Last updated:
+03-11-2025 
+06:56:25
+
+Progress: 100.0%
+[|||||||||||||||||||||||||]
+
+Run time:
+8 hours, 50 minutes, 33 seconds, 959 milliseconds
+
+Expected time left:
+0

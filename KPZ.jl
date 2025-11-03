@@ -13,7 +13,6 @@ function f!(fields, con, tools)
     mul!(f.x, bplan, f.k)
     @. f.x = u * f.x^2 / 2
     mul!(f.k, fplan, f.x)
-    nothing
 end
 
 function run(n, seed, folder)
