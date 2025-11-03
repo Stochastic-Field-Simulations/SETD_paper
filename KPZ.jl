@@ -19,17 +19,13 @@ end
 function run(n, seed, folder)
     d       = 1
     T       = 1e-2
-
     N       = 2^10
     L       = N/2
     Δt      = 2e-3
-    
-    con     = (u = 50.,)
-
     N_save  = 2^10
     N_step  = N_save * 100
-    equ     = 0
-
+    
+    con     = (u = 50.,)
     sys     = System(d, N, L, Δt; T=T)
     tools   = Tools(sys; seed=seed, conserved=false, time_step=ETD2)
 
@@ -37,10 +33,7 @@ function run(n, seed, folder)
     field_names = [:φ, :ξ, :f, :f3]
     save_names  = [:φ,]
     fields      = get_fields(tools, field_names)
-
-    @showprogress for i in 1:equ ETD!(fields, tools, f!, con, i) end
-
-    save_opt = (
+    save_opt    = (
         save_names=save_names, folder=folder, 
         N_step=N_step, N_save=N_save, t_start=now(),
         SAVEFIELD=true, SAVECORR=false, N_write=false,
@@ -56,7 +49,7 @@ end
 
 
 function local_run()
-    num = 5
+    num = 4
     n   = 96
     numbers = (n=n)
 
