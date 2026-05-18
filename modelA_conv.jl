@@ -16,7 +16,7 @@ function f!(fields, con, tools)
     mul!(f.k, fplan, f.x)
 end
 
-function run_sim(Δt, m, seed, folder, time_step_type)
+function run_sim(Δt, m, seed, folder, time_step_type; N_save=1)
     d       = 1
     T       = 1e-4
     N       = 2^8
@@ -43,6 +43,7 @@ function run_sim(Δt, m, seed, folder, time_step_type)
         N_step=N_step, N_save=N_save, t_start=now(),
         SAVEFIELD=true, SAVECORR=false, N_write=false, SAVEDATA=SAVEDATA
     )
+
     SFS.init!(fields, tools, con)
     save_first_para_opt(tools, con, fields, save_opt; para=seed==1)
     for i in 1:N_step
@@ -63,7 +64,8 @@ function local_run()
         println("Running m=$m, Δt=$Δt")
         @time @threads for seed in 1:n
             for i in eachindex(nums)
-                folder  = "data/SETD_paper/$(nums[i])/$m/$seed/"
+                # folder  = "data/SETD_paper/$(nums[i])/$m/$seed/"
+                folder  = "/scratch.local/mjohnsrud/data/SETD_paper/$(nums[i])/$m/$seed/"
                 run_sim(Δt, m, seed, folder, steps[i])
             end
         end

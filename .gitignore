@@ -4,3 +4,4 @@ Manifest.toml
 data/old
 fig/
 data/SETD_paper/*
+*.code-workspace

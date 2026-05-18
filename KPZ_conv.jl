@@ -6,7 +6,6 @@ using Dates
 
 using SFS 
 
-
 function f!(fields, con, tools)
     @unpack φ, f = fields
     @unpack u = con
@@ -18,16 +17,15 @@ function f!(fields, con, tools)
     mul!(f.k, fplan, f.x)
 end
 
-function run_sim(Δt, m, seed, folder, time_step_type)
+function run_sim(Δt, m, seed, folder, time_step_type; N_save  = 1)
     d       = 1
     T       = 1e-3
-    N       = 2^8
+    N       = 2^10
     L       = N/2
-    TIME    = 10
+    TIME    = 50
     N_step  = Int(TIME / Δt)
-    N_save  = 1
     
-    con     = (u = 50.,)
+    con     = (u = 40.,)
     sys     = System(d, N, L, Δt; T=T)
     tools   = Tools(sys; seed=seed, conserved=false, time_step=time_step_type)
 
@@ -39,7 +37,7 @@ function run_sim(Δt, m, seed, folder, time_step_type)
     if seed==1; SAVEDATA= (:tools,)
     else; SAVEDATA = (:tools,); nothing end
 
-    save_opt = (
+    save_opt    = (
         save_names=save_names, folder=folder,
         N_step=N_step, N_save=N_save, t_start=now(),
         SAVEFIELD=true, SAVECORR=false, N_write=false, SAVEDATA=SAVEDATA
@@ -53,24 +51,24 @@ function run_sim(Δt, m, seed, folder, time_step_type)
 end
 
 function local_run()
-    n   = 2^14 # ensemble size
+    n   = 2^16 # ensemble size
     M   = 8
     Δt0 = 1/16
     
     nums    = (6, 7, 8)
+    
     steps   = (ETD1, ETD2, IF)
     for m in 1:M
         Δt = Δt0 / (2^(m-1))
         println("Running m=$m, Δt=$Δt")
         @time @threads for seed in 1:n
             for i in eachindex(nums)
-                folder  = "data/SETD_paper/$(nums[i])/$m/$seed/"
+                folder  = "/scratch.local/mjohnsrud/data/SETD_paper/$(nums[i])/$m/$seed/"
+                # folder  = "data/SETD_paper/$(nums[i])/$m/$seed/"
                 run_sim(Δt, m, seed, folder, steps[i])
             end
         end
     end
 end
-
-# Base.invokelatest(local_run)
 
 local_run()
